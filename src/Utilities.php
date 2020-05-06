@@ -150,6 +150,8 @@ final class Utilities
                 
                 if ($obj instanceof \Iterator) {
                     $serialized['value'] = 'non-serializable';
+                } elseif ($obj instanceof \Google\Protobuf\Internal\Message) {
+                    $serialized['value'] = $obj->serializeToJsonString();
                 } else {
                     $serialized['value'] = self::serializeForRollbar(
                         $obj,
